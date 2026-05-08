@@ -1,0 +1,11 @@
+{"holdingRegister":
+    [
+        {"name":"OnOff","addresses":[0],"type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":""}
+    ],
+    "inputRegister":
+    [
+        {"name":"OnOff","addresses":[0],"type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":""}
+    ]
+
+
+}
