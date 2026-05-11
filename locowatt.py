@@ -11,24 +11,24 @@ modbusInterface = locowattModbusRTU.modbusRTUInterface()
 
 for hrVariable in holdingRegisterVariables:
 
-    print (len(hrVariable["addresses"]))
-    if (len(hrVariable["addresses"])>1):
+    
+    if ((hrVariable["length"])>1):
         #multi register
-        print(hrVariable["addresses"])
-        intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["addresses"],len(hrVariable["addresses"]))
+        print(hrVariable["address"])
+        intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
         
         #intValues = [104,105,103]
         bValues = b''
         for intVal in intValues:
             bValues = bValues + intVal.to_bytes(2,"little")
         #bValues = bytearray(intValues)
-        print(hrVariable["addresses"][0])
+        print(hrVariable["address"][0])
         print(bValues)
         print(hrVariable["name"]+": "+ bValues.decode())
     
     else:
         #single register
-        value = modbusInterface.readSingleHoldingRegister(hrVariable["addresses"][0])
+        value = modbusInterface.readSingleHoldingRegister(hrVariable["address"][0])
         #value = 1
         print(hrVariable["name"]+": "+ str(value))
         
