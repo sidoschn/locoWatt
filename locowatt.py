@@ -21,7 +21,7 @@ for hrVariable in holdingRegisterVariables:
         
     else:
         #multi register
-        intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["addresses"])
+        intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["addresses"],len(hrVariable["addresses"]))
         
         #intValues = [104,105,103]
         bValues = b''
