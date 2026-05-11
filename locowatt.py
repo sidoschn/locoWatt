@@ -32,7 +32,7 @@ for hrVariable in holdingRegisterVariables:
         print(hrVariable["name"]+": "+ str(value))
         
         
-test = modbusInterface.readSingleHoldingRegisterString(23)
+test = modbusInterface.readSingleHoldingRegisterString(209)
 
 print(test)
 #print(test.to_bytes('little'))
