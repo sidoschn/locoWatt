@@ -7,7 +7,7 @@
     "inputRegister":
     [
         {"name":"InverterStatus","address":0,"length":5, "type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":""},
-        {"name":"Serial NO","address":1086 ,"length":1,"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"%"}
+        {"name":"SoC","address":1086 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"%"}
     ]
 
 
