@@ -32,11 +32,11 @@ for hrVariable in holdingRegisterVariables:
         print(hrVariable["name"]+": "+ str(value))
         
         
-test = modbusInterface.readSingleHoldingRegister(23)
+test = modbusInterface.readSingleHoldingRegisterString(23)
 
 print(test)
-print(test.to_bytes('little'))
-print(test.to_bytes('big'))
+#print(test.to_bytes('little'))
+#print(test.to_bytes('big'))
         
         
 modbusInterface.forceCloseSerialPort()
