@@ -8,7 +8,8 @@
     [
         {"name":"InverterStatus","address":0,"length":1, "type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":""},
         {"name":"SoC","address":3215 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"%"},
-        {"name":"Pac","address":35 ,"length":2,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":"%"}
+        {"name":"Ppv","address":35 ,"length":2,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":" W"},
+        {"name":"Pac","address":35 ,"length":2,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":" W"}
         
     ]
 
