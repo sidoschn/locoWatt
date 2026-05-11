@@ -31,6 +31,14 @@ class modbusRTUInterface:
         
         readValues = self.inverter.read_registers(registerAddress,nRegisters)
         return readValues
+    
+    def forceCloseSerialPort(self):
+        if self.inverter.serial.is_open:
+            self.inverter.serial.close()
+            print("serial port closed")
+        else:
+            print("serial port was already closed")
+        
 
 
     def switchInverterState(self, bTurnOff):

@@ -1,6 +1,7 @@
 {"holdingRegister":
     [
-        {"name":"OnOff","addresses":[0],"type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":""}
+        {"name":"OnOff","addresses":[0],"type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":""},
+        {"name":"Serial NO","addresses":[23,24,25,26,27],"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":""}
     ],
     "inputRegister":
     [
