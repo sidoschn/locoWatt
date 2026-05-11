@@ -34,7 +34,6 @@ class modbusRTUInterface:
     def readMultipleHoldingRegisters(self, registerAddress, nRegisters):
         #print(registerAddress)
         readValues = self.inverter.read_registers(registerAddress,nRegisters)
-        self.inverter.re
         return readValues
     
     def readSingleInputRegister(self,registerAddress):
