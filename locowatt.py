@@ -61,8 +61,9 @@ for hrVariable in inputRetisterVariables:
     
     if ((hrVariable["length"])>1):
         #multi register
-        intValues = modbusInterface.readMultipleInputRegisters(hrVariable["address"],hrVariable["length"])
+        
         if (hrVariable["type"]=="char"):
+            intValues = modbusInterface.readMultipleInputRegisters(hrVariable["address"],hrVariable["length"])
             #intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
             
             #intValues = [104,105,103]
@@ -74,12 +75,15 @@ for hrVariable in inputRetisterVariables:
             #print(bValues)
             print(hrVariable["name"]+": "+ bValues.decode())
         elif (hrVariable["type"]=="int"):
-            print("int format")
+            print("int (long) format")
+            intValues = modbusInterface.readLongInputRegisters(hrVariable["address"],hrVariable["length"])
+            
             print(intValues)
             bValues = b''
             for intVal in intValues:
                 bValues = bValues + intVal.to_bytes(2,"big")
             print(bValues)
+            combInt = int.from_bytes(bValues, 'big')
 
         else:
             print("format not implemented, skipping output")

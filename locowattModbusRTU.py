@@ -34,6 +34,7 @@ class modbusRTUInterface:
     def readMultipleHoldingRegisters(self, registerAddress, nRegisters):
         #print(registerAddress)
         readValues = self.inverter.read_registers(registerAddress,nRegisters)
+        self.inverter.re
         return readValues
     
     def readSingleInputRegister(self,registerAddress):
@@ -44,6 +45,13 @@ class modbusRTUInterface:
         #print(registerAddress)
         readValues = self.inverter.read_registers(registerAddress,nRegisters,4)
         return readValues
+    
+    def readLongInputRegisters(self, registerAddress, nRegisters):
+        #print(registerAddress)
+        #readValues = self.inverter.read_registers(registerAddress,nRegisters,4)
+        readValues = self.inverter.read_long(registerAddress,4)
+        return readValues
+    
     
 
     def forceCloseSerialPort(self):
