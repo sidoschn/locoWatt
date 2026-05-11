@@ -75,6 +75,11 @@ for hrVariable in inputRetisterVariables:
             print(hrVariable["name"]+": "+ bValues.decode())
         elif (hrVariable["type"]=="int"):
             print("int format")
+            print(intValues)
+            bValues = b''
+            for intVal in intValues:
+                bValues = bValues + intVal.to_bytes(2,"big")
+            print(bValues)
 
         else:
             print("format not implemented, skipping output")
