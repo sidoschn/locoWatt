@@ -13,13 +13,6 @@ for hrVariable in holdingRegisterVariables:
 
     print (len(hrVariable["addresses"]))
     if (len(hrVariable["addresses"])>1):
-        #single register
-        value = modbusInterface.readSingleHoldingRegister(hrVariable["addresses"][0])
-        #value = 1
-        print(hrVariable["name"]+": "+ str(value))
-        
-        
-    else:
         #multi register
         print(hrVariable["addresses"])
         intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["addresses"],len(hrVariable["addresses"]))
@@ -32,6 +25,16 @@ for hrVariable in holdingRegisterVariables:
         print(hrVariable["addresses"][0])
         print(bValues)
         print(hrVariable["name"]+": "+ bValues.decode())
+    
+    else:
+        #single register
+        value = modbusInterface.readSingleHoldingRegister(hrVariable["addresses"][0])
+        #value = 1
+        print(hrVariable["name"]+": "+ str(value))
+        
+        
+    
+        
         
 modbusInterface.forceCloseSerialPort()
 
