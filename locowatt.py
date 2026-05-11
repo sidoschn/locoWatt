@@ -19,7 +19,7 @@ for hrVariable in holdingRegisterVariables:
         #intValues = [104,105,103]
         bValues = b''
         for intVal in intValues:
-            bValues = bValues + intVal.to_bytes(2,"little")
+            bValues = bValues + intVal.to_bytes(2,"big")
         #bValues = bytearray(intValues)
         
         print(bValues)
