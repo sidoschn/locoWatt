@@ -9,7 +9,7 @@ configHandler = locowattConfigHandler.configHandler()
 holdingRegisterVariables = configHandler.getRegisterVariables()
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 
-inputRetisterVariables = configHandler.getRegisterVariables()
+inputRetisterVariables = configHandler.getRegisterVariables("inputRegister")
 
 for hrVariable in holdingRegisterVariables:
 
