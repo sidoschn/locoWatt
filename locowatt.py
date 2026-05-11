@@ -22,7 +22,7 @@ for hrVariable in holdingRegisterVariables:
             bValues = bValues + intVal.to_bytes(2,"big")
         #bValues = bytearray(intValues)
         
-        print(bValues)
+        #print(bValues)
         print(hrVariable["name"]+": "+ bValues.decode())
     
     else:
@@ -32,9 +32,9 @@ for hrVariable in holdingRegisterVariables:
         print(hrVariable["name"]+": "+ str(value))
         
         
-test = modbusInterface.readSingleHoldingRegisterString(209)
+#test = modbusInterface.readSingleHoldingRegisterString(209)
 
-print(test)
+#print(test)
 #print(test.to_bytes('little'))
 #print(test.to_bytes('big'))
         
