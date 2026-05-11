@@ -22,13 +22,13 @@ for hrVariable in holdingRegisterVariables:
         for intVal in intValues:
             bValues = bValues + intVal.to_bytes(2,"little")
         #bValues = bytearray(intValues)
-        print(hrVariable["address"][0])
+        print(hrVariable["address"])
         print(bValues)
         print(hrVariable["name"]+": "+ bValues.decode())
     
     else:
         #single register
-        value = modbusInterface.readSingleHoldingRegister(hrVariable["address"][0])
+        value = modbusInterface.readSingleHoldingRegister(hrVariable["address"])
         #value = 1
         print(hrVariable["name"]+": "+ str(value))
         
