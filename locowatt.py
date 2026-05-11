@@ -76,14 +76,15 @@ for hrVariable in inputRetisterVariables:
             print(hrVariable["name"]+": "+ bValues.decode())
         elif (hrVariable["type"]=="int"):
             print("int (long) format")
-            intValues = modbusInterface.readLongInputRegisters(hrVariable["address"],hrVariable["length"])
-            
-            print(intValues)
-            bValues = b''
-            for intVal in intValues:
-                bValues = bValues + intVal.to_bytes(2,"big")
-            print(bValues)
-            combInt = int.from_bytes(bValues, 'big')
+            intValue = modbusInterface.readLongInputRegisters(hrVariable["address"],hrVariable["length"])
+            scaledValue = intValue*hrVariable["valueMultiplier"]
+            print(hrVariable["name"]+": "+str(scaledValue)+ hrVariable["unit"])
+            print(intValue)
+            # bValues = b''
+            # for intVal in intValues:
+            #     bValues = bValues + intVal.to_bytes(2,"big")
+            # print(bValues)
+            # combInt = int.from_bytes(bValues, 'big')
 
         else:
             print("format not implemented, skipping output")
