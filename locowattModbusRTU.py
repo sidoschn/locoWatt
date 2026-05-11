@@ -28,7 +28,7 @@ class modbusRTUInterface:
         return readValue
     
     def readSingleHoldingRegisterString(self,registerAddress):
-        readValue = self.inverter.read_string(registerAddress,0)
+        readValue = self.inverter.read_string(registerAddress,1)
         return readValue
     
     def readMultipleHoldingRegisters(self, registerAddress, nRegisters):
