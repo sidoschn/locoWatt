@@ -1,5 +1,6 @@
 import minimalmodbus
 import time
+import locowattConfigHandler
 
 class modbusRTUInterface:
     inverter = None
@@ -51,6 +52,43 @@ class modbusRTUInterface:
         readValues = self.inverter.read_long(registerAddress,4)
         return readValues
     
+    #def readSingleVariable(self, registerVariable):
+
+    def readSingleVariable(self, registerVariable = locowattConfigHandler.registerVariable()):
+
+        if (registerVariable.type == "int"):
+            return (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+        elif(registerVariable.type == "long"):
+            #readValue = (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+            return (self.inverter.read_long(registerVariable.address, registerVariable.register) )*registerVariable.valueMultiplier
+        elif(registerVariable.type == "char"):
+            #readValue = (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+            intValues = self.inverter.read_registers(registerVariable.address,registerVariable.length,registerVariable.register)
+            bValues = b''
+            for intVal in intValues:
+                bValues = bValues + intVal.to_bytes(2,"big")
+            return bValues.decode()
+
+    def readVariableList(self, registerVariables = [locowattConfigHandler.registerVariable()]):
+        data = {}
+        for registerVariable in registerVariables:
+            if (registerVariable.type == "int"):
+                data[registerVariable.name] = ((self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier)
+                #((self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier)
+            elif(registerVariable.type == "long"):
+                #readValue = (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+                data[registerVariable.name] = (self.inverter.read_long(registerVariable.address, registerVariable.register) )*registerVariable.valueMultiplier
+            elif(registerVariable.type == "char"):
+                #readValue = (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+                intValues = self.inverter.read_registers(registerVariable.address,registerVariable.length,registerVariable.register)
+                bValues = b''
+                for intVal in intValues:
+                    bValues = bValues + intVal.to_bytes(2,"big")
+                data[registerVariable.name]= bValues.decode()
+        
+        return data
+        
+        
     
 
     def forceCloseSerialPort(self):

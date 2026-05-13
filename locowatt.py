@@ -2,104 +2,128 @@
 import locowattConfigHandler
 import locowattModbusRTU
 
+
+
 #mqtt = locowattMQTT()
+
+#registerVariables = [locowattConfigHandler.registerVariable()]
+
+
 
 configHandler = locowattConfigHandler.configHandler()
 
-holdingRegisterVariables = configHandler.getRegisterVariables()
+#holdingRegisterVariables = configHandler.getRegisterVariables()
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 
-inputRetisterVariables = configHandler.getRegisterVariables("inputRegister")
+data = modbusInterface.readVariableList(configHandler.registerVariableList)
 
-for hrVariable in holdingRegisterVariables:
+print (data)
 
-    
-    if ((hrVariable["length"])>1):
-        #multi register
-        intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
-        if (hrVariable["type"]=="char"):
-            #intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
-            
-            #intValues = [104,105,103]
-            bValues = b''
-            for intVal in intValues:
-                bValues = bValues + intVal.to_bytes(2,"big")
-            #bValues = bytearray(intValues)
-            
-            #print(bValues)
-            print(hrVariable["name"]+": "+ bValues.decode())
-        elif (hrVariable["type"]=="int"):
-            print("int format")
-            print(intValues)
-            bValues = b''
-            for intVal in intValues:
-                bValues = bValues + intVal.to_bytes(2,"big")
-            print(bValues)
-            
+# searchFor = 'Ppv'
+# searchResult = None
 
-        else:
-            print("format not implemented, skipping output")
-        
-    
-    else:
-        #single register
-        value = modbusInterface.readSingleHoldingRegister(hrVariable["address"])
-        #value = 1
-        scaledValue = value*hrVariable["valueMultiplier"]
-        print(hrVariable["name"]+": "+ str(scaledValue) + hrVariable["unit"])
-        
-        
-#test = modbusInterface.readSingleHoldingRegisterString(209)
-
-#print(test)
-#print(test.to_bytes('little'))
-#print(test.to_bytes('big'))
+# for varContent in configHandler.registerVariableList:
+#     if varContent.name == searchFor:
+#         # print(searchFor)
+#         # print(varContent.name)
+#         # print(varContent.content())
+#         searchResult = varContent
 
 
-for hrVariable in inputRetisterVariables:
+# print(searchResult.content())
+
+
+
+
+# for hrVariable in holdingRegisterVariables:
 
     
-    if ((hrVariable["length"])>1):
-        #multi register
-        
-        if (hrVariable["type"]=="char"):
-            intValues = modbusInterface.readMultipleInputRegisters(hrVariable["address"],hrVariable["length"])
-            #intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
+#     if ((hrVariable["length"])>1):
+#         #multi register
+#         intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
+#         if (hrVariable["type"]=="char"):
+#             #intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
             
-            #intValues = [104,105,103]
-            bValues = b''
-            for intVal in intValues:
-                bValues = bValues + intVal.to_bytes(2,"big")
-            #bValues = bytearray(intValues)
+#             #intValues = [104,105,103]
+#             bValues = b''
+#             for intVal in intValues:
+#                 bValues = bValues + intVal.to_bytes(2,"big")
+#             #bValues = bytearray(intValues)
             
-            #print(bValues)
-            print(hrVariable["name"]+": "+ bValues.decode())
-        elif (hrVariable["type"]=="int"):
-            print("int (long) format")
-            intValue = modbusInterface.readLongInputRegisters(hrVariable["address"],hrVariable["length"])
-            scaledValue = intValue*hrVariable["valueMultiplier"]
-            print(hrVariable["name"]+": "+str(scaledValue)+ hrVariable["unit"])
-            print(intValue)
-            # bValues = b''
-            # for intVal in intValues:
-            #     bValues = bValues + intVal.to_bytes(2,"big")
-            # print(bValues)
-            # combInt = int.from_bytes(bValues, 'big')
+#             #print(bValues)
+#             print(hrVariable["name"]+": "+ bValues.decode())
+#         elif (hrVariable["type"]=="int"):
+#             print("int format")
+#             print(intValues)
+#             bValues = b''
+#             for intVal in intValues:
+#                 bValues = bValues + intVal.to_bytes(2,"big")
+#             print(bValues)
+            
 
-        else:
-            print("format not implemented, skipping output")
+#         else:
+#             print("format not implemented, skipping output")
         
     
-    else:
-        #single register
-        value = modbusInterface.readSingleInputRegister(hrVariable["address"])
-        #value = 1
-        scaledValue = value*hrVariable["valueMultiplier"]
-        print(hrVariable["name"]+": "+ str(scaledValue) + hrVariable["unit"])
+#     else:
+#         #single register
+#         value = modbusInterface.readSingleHoldingRegister(hrVariable["address"])
+#         #value = 1
+#         scaledValue = value*hrVariable["valueMultiplier"]
+#         print(hrVariable["name"]+": "+ str(scaledValue) + hrVariable["unit"])
+        
+        
+# #test = modbusInterface.readSingleHoldingRegisterString(209)
+
+# #print(test)
+# #print(test.to_bytes('little'))
+# #print(test.to_bytes('big'))
+
+
+# for hrVariable in inputRetisterVariables:
+
+    
+#     if ((hrVariable["length"])>1):
+#         #multi register
+        
+#         if (hrVariable["type"]=="char"):
+#             intValues = modbusInterface.readMultipleInputRegisters(hrVariable["address"],hrVariable["length"])
+#             #intValues = modbusInterface.readMultipleHoldingRegisters(hrVariable["address"],hrVariable["length"])
+            
+#             #intValues = [104,105,103]
+#             bValues = b''
+#             for intVal in intValues:
+#                 bValues = bValues + intVal.to_bytes(2,"big")
+#             #bValues = bytearray(intValues)
+            
+#             #print(bValues)
+#             print(hrVariable["name"]+": "+ bValues.decode())
+#         elif (hrVariable["type"]=="int"):
+#             print("int (long) format")
+#             intValue = modbusInterface.readLongInputRegisters(hrVariable["address"],hrVariable["length"])
+#             scaledValue = intValue*hrVariable["valueMultiplier"]
+#             print(hrVariable["name"]+": "+str(scaledValue)+ hrVariable["unit"])
+#             print(intValue)
+#             # bValues = b''
+#             # for intVal in intValues:
+#             #     bValues = bValues + intVal.to_bytes(2,"big")
+#             # print(bValues)
+#             # combInt = int.from_bytes(bValues, 'big')
+
+#         else:
+#             print("format not implemented, skipping output")
+        
+    
+#     else:
+#         #single register
+#         value = modbusInterface.readSingleInputRegister(hrVariable["address"])
+#         #value = 1
+#         scaledValue = value*hrVariable["valueMultiplier"]
+#         print(hrVariable["name"]+": "+ str(scaledValue) + hrVariable["unit"])
         
 
         
-modbusInterface.forceCloseSerialPort()
+#modbusInterface.forceCloseSerialPort()
 
     
 
