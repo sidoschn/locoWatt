@@ -2,7 +2,7 @@ import locowattMQTT
 import locowattConfigHandler
 import locowattModbusRTU
 import autoUpdate
-
+import time
 
 autoUpdate.performAutoupdate()
 
@@ -18,13 +18,17 @@ configHandler = locowattConfigHandler.configHandler()
 #holdingRegisterVariables = configHandler.getRegisterVariables()
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 
-data = modbusInterface.readVariableList(configHandler.registerVariableList)
+for i in range(5):
 
-print (data)
 
-payload = mqtt.compilePyload(data)
+    data = modbusInterface.readVariableList(configHandler.registerVariableList)
 
-mqtt.publishPayload(payload, payload["device"])
+    print (data)
+
+    payload = mqtt.compilePyload(data)
+
+    mqtt.publishPayload(payload, payload["device"])
+    time.sleep(1)
 
 # searchFor = 'Ppv'
 # searchResult = None
