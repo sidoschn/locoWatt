@@ -1,7 +1,10 @@
 import locowattMQTT
 import locowattConfigHandler
 import locowattModbusRTU
+import autoUpdate
 
+
+autoUpdate.performAutoupdate()
 
 
 mqtt = locowattMQTT.mqttInterface()
