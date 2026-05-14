@@ -1,10 +1,10 @@
-#import locowattMQTT
+import locowattMQTT
 import locowattConfigHandler
 import locowattModbusRTU
 
 
 
-#mqtt = locowattMQTT()
+mqtt = locowattMQTT.mqttInterface()
 
 #registerVariables = [locowattConfigHandler.registerVariable()]
 
@@ -18,6 +18,8 @@ modbusInterface = locowattModbusRTU.modbusRTUInterface()
 data = modbusInterface.readVariableList(configHandler.registerVariableList)
 
 print (data)
+
+mqtt.publishPayload(data, data["Serial NO"])
 
 # searchFor = 'Ppv'
 # searchResult = None
