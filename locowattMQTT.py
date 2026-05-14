@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import json
+import datetime
 
 class mqttInterface:
     mqttc = None
@@ -22,6 +23,14 @@ class mqttInterface:
 
     def publishPayload(self, payload, publishChannel):
         self.mqttc.publish(self.baseChannel+"/"+publishChannel, json.dumps(payload))
+
+    def compilePyload (self, data):
+        payload = {}
+        payload["device"] = data["Serial NO"]
+        timeInfo = datetime.datetime.now()
+        payload["time"] = timeInfo.strftime("%Y-%m-%d-%H:%M:%S:%f")
+        payload["data"] = data
+        return payload
 
     def __init__(self, serverIp = defaultServerIp, port = defaultPort, baseChannel = defaultBaseChannel):
 

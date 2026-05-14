@@ -22,7 +22,9 @@ data = modbusInterface.readVariableList(configHandler.registerVariableList)
 
 print (data)
 
-mqtt.publishPayload(data, data["Serial NO"])
+payload = mqtt.compilePyload(data)
+
+mqtt.publishPayload(payload, payload["device"])
 
 # searchFor = 'Ppv'
 # searchResult = None
