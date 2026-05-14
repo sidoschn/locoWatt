@@ -25,6 +25,115 @@ def keyPrinter(dictionary):
 #                 print(key, dictionary[key])
 #     return sensorList
 
+#make a new sensor list from a config list
+def sensorListFromListMaker(configList, pvSerial, jsondate, rRCRcontrollers = []):
+    sensorList = []
+    #print(configDictionary)
+
+    # always add a new sensor that displays the timestamp received sent from grott through MQTT
+    newSensor = {'sensor':{'name':'last Update', 'unique_id': pvSerial+"lastUpdate", 'state_topic':'energy/locowatt/'+pvSerial, 'value_template':'{{ value_json.time | as_datetime }}', 'device': {'identifiers': pvSerial, 'name': 'Inverter '+pvSerial}}}
+    sensorList.append(newSensor)
+
+    # add sensors according to the applied config dictionary for the device
+    for entry in configList:
+        
+        
+        if (entry["bMakeSensor"]):
+                # bUnitEntry = False
+                # try:
+                #     bUnitEntry = True
+                #     entryUnit = entry["unit"]
+                #     #print(entryUnit)
+                # except:
+                #     bUnitEntry = False
+                entryUnit = entry["unit"]
+                
+                if entryUnit==" V":
+                    sensorUnit = "V"
+                    sensorType = "voltage"
+                    stateClass = "measurement"
+                elif entryUnit==" W":
+                    sensorUnit = "W"
+                    sensorType = "power"
+                    stateClass = "measurement"
+                elif entryUnit==" kWh":
+                    sensorUnit = "kWh"
+                    sensorType = "energy"
+                    stateClass = "total"
+                elif entryUnit==" A":
+                    sensorUnit = "A"
+                    sensorType = "current"
+                    stateClass = "measurement"
+                elif entryUnit==" °C":
+                    sensorUnit = "°C"
+                    sensorType = "temperature"
+                    stateClass = "measurement"
+                elif entryUnit=="%":
+                    sensorUnit = "%"
+                    sensorType = "battery"
+                    stateClass = "measurement"
+                else:
+                    #print("no unit")
+                    bHasUnit = False
+                    sensorType = "power"
+                    
+                    if bHasUnit:
+                        newSensor = {'sensor':{'name':entry["name"],'device_class': sensorType, 'unit_of_measurement':sensorUnit, 'unique_id':pvSerial+entry["name"], 'state_class':stateClass, 'state_topic':'energy/locowatt/'+pvSerial, 'value_template':'{{ float(value_json.data.'+entry["name"]+') }}', 'device': {'identifiers': pvSerial, 'name': 'Inverter '+pvSerial}}}
+                    else:
+                        newSensor = {'sensor':{'name':entry["name"],'device_class': sensorType, 'unique_id':pvSerial+entry["name"], 'state_class':stateClass, 'state_topic':'energy/locowatt/'+pvSerial, 'value_template':'{{ float(value_json.data.'+entry["name"]+') }}', 'device': {'identifiers': pvSerial, 'name': 'Inverter '+pvSerial}}}
+                
+                        #newSensor = {'sensor':{'name':key, 'unique_id':pvSerial+key, 'state_topic':'energy/growatt/'+pvSerial, 'value_template':'{{ float(value_json.data.'+key+')/'+ str(entry["divide"]) +' }}', 'device': {'identifiers': pvSerial, 'name': 'Growatt '+pvSerial}}}
+                
+                sensorList.append(newSensor)
+                
+                # entryName = entry["name"]
+                # if entryName == "ptogridtotal":
+                #     ptogridTotal = 
+
+            #print(key, dictionary['data'][key])
+    
+    # add custom and composit sensors here:
+
+    # add sensors for RRCR controllers here:
+    for controller in rRCRcontrollers:
+        sensorUnit = "%"
+        sensorType = "battery"
+        stateClass = "measurement"
+        newSensor = {'sensor':{'name':controller.attachedToLogger+"exportLimitPercent",'device_class': sensorType, 'unit_of_measurement':sensorUnit, 'unique_id':controller.attachedToLogger+"exportLimitPercent",'state_class':stateClass, 'state_topic':'energy/growatt/'+pvSerial, 'value_template':'{{ float(value_json.data.RRCRat'+controller.attachedToLogger+'Limit) }}', 'device': {'identifiers': pvSerial, 'name': 'Growatt '+pvSerial}}}
+        sensorList.append(newSensor)
+
+        #sensorType = "power"
+        #newSensor = {'sensor':{'name':"isRRCRactive",'device_class': sensorType, 'unique_id':pvSerial+"isRRCRactive", 'state_class':stateClass, 'state_topic':'energy/growatt/'+pvSerial, 'value_template':'{{ (value_json.data.RRCRat'+controller.attachedToLogger+'Connected) }}', 'device': {'identifiers': pvSerial, 'name': 'Growatt '+pvSerial}}}
+        newSensor = {'binary_sensor':{'name':controller.attachedToLogger+"isRRCRactive", 'device_class': 'running', 'payload_off': 'OFF', 'payload_on':'ON','unique_id':controller.attachedToLogger+"isRRCRactive", 'state_topic':'energy/growatt/'+pvSerial, 'value_template':'{{ (value_json.data.RRCRat'+controller.attachedToLogger+'Connected) }}', 'device': {'identifiers': pvSerial, 'name': 'Growatt '+pvSerial}}}
+        sensorList.append(newSensor)
+
+
+    # add power import-export sensor with + for export and - for import
+    #if ("ptogridtotal" in configDictionary and "ptousertotal" in configDictionary):
+        #print(configDictionary["ptogridtotal"])
+        sensorUnit = "W"
+        sensorType = "power"
+        newSensor = {'sensor':{'name':"pgridimportexport",'device_class': sensorType, 'unit_of_measurement':sensorUnit, 'unique_id':pvSerial+"pgridimportexport", 'state_topic':'energy/locowatt/'+pvSerial, 'value_template':'{{ float(value_json.data.ptogridtotal-value_json.data.ptousertotal) }}', 'device': {'identifiers': pvSerial, 'name': 'Inverter '+pvSerial}}}
+        sensorList.append(newSensor)
+
+    # add charge-discharge sensor for battery 1
+    #if ("bdc1_pchr" in configDictionary and "bdc1_pdischr" in configDictionary):
+        #print(configDictionary["ptogridtotal"])
+        sensorUnit = "W"
+        sensorType = "power"
+        newSensor = {'sensor':{'name':"pbdc1chrdischr",'device_class': sensorType, 'unit_of_measurement':sensorUnit, 'unique_id':pvSerial+"pbdc1chrdischr", 'state_topic':'energy/locowatt/'+pvSerial, 'value_template':'{{ float(value_json.data.bdc1_pchr - value_json.data.bdc1_pdischr) }}', 'device': {'identifiers': pvSerial, 'name': 'Inverter '+pvSerial}}}
+        sensorList.append(newSensor)
+
+    # add charge-discharge sensor for battery 2
+    #if ("bdc2_pchr" in configDictionary and "bdc2_pdischr" in configDictionary):
+        #print(configDictionary["ptogridtotal"])
+        sensorUnit = "W"
+        sensorType = "power"
+        newSensor = {'sensor':{'name':"pbdc2chrdischr",'device_class': sensorType, 'unit_of_measurement':sensorUnit, 'unique_id':pvSerial+"pbdc2chrdischr", 'state_topic':'energy/locowatt/'+pvSerial, 'value_template':'{{ float(value_json.data.bdc2_pchr - value_json.data.bdc2_pdischr) }}', 'device': {'identifiers': pvSerial, 'name': 'Inverter '+pvSerial}}}
+        sensorList.append(newSensor)
+
+    return sensorList
+
 #make a new sensor list from a config dictionary
 def sensorListMaker(configDictionary, pvSerial, jsondate, rRCRcontrollers):
     sensorList = []
