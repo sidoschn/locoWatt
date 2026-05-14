@@ -1,5 +1,5 @@
 import paho.mqtt.client as mqtt
-
+import json
 
 class mqttInterface:
     mqttc = None
@@ -21,7 +21,7 @@ class mqttInterface:
         self.mqttc.loop_forever()
 
     def publishPayload(self, payload, publishChannel):
-        self.mqttc.publish(self.baseChannel+"/"+publishChannel, payload)
+        self.mqttc.publish(self.baseChannel+"/"+publishChannel, json.dumps(payload))
 
     def __init__(self, serverIp = defaultServerIp, port = defaultPort, baseChannel = defaultBaseChannel):
 
