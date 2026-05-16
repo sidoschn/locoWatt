@@ -92,7 +92,7 @@ class modbusRTUInterface:
                 bValues = b''
                 for intVal in intValues:
                     bValues = bValues + intVal.to_bytes(2,"big")
-                data[varName]= bValues.decode()
+                data[varName]= bValues
         self.inverter.close_port_after_each_call = True
         self.inverter.serial.close()
         return data
