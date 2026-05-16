@@ -88,12 +88,18 @@ class modbusRTUInterface:
                     bValues = bValues + intVal.to_bytes(2,"big")
                 data[varName]= bValues.decode()
             elif(registerVariable.type == "byte"):
+                
                 intValues = self.inverter.read_registers(registerVariable.address,registerVariable.length,registerVariable.register)
                 print(intValues)
+                binValues = bin(intValues)
+                print(binValues)
+                print(binValues[0:7])
                 bValues = b''
+                values = int(binValues[0:7],2)
+                print(values)
                 for intVal in intValues:
                     bValues = bValues + intVal.to_bytes(2,"big")
-                data[varName]= bValues.decode()
+                data[varName]= values
         self.inverter.close_port_after_each_call = True
         self.inverter.serial.close()
         return data
