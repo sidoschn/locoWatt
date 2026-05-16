@@ -93,12 +93,12 @@ class modbusRTUInterface:
                 print(intValues)
                 binValues = bin(intValues)
                 print(binValues)
-                print(binValues[0:7])
+                print(binValues[-8:])
                 bValues = b''
-                values = int(binValues[0:7],2)
+                values = int(binValues[-8:],2)
                 print(values)
-                for intVal in intValues:
-                    bValues = bValues + intVal.to_bytes(2,"big")
+                # for intVal in intValues:
+                #     bValues = bValues + intVal.to_bytes(2,"big")
                 data[varName]= values
         self.inverter.close_port_after_each_call = True
         self.inverter.serial.close()
