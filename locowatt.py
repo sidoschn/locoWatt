@@ -21,7 +21,7 @@ modbusInterface = locowattModbusRTU.modbusRTUInterface()
 for i in range(5):
 
 
-    data = modbusInterface.readVariableList(configHandler.registerVariableList)
+    data = modbusInterface.readVariableList(configHandler.registerVariableDict)
 
     print (data)
 

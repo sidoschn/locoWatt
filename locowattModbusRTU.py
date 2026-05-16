@@ -69,6 +69,27 @@ class modbusRTUInterface:
                 bValues = bValues + intVal.to_bytes(2,"big")
             return bValues.decode()
 
+
+    def readVariableDict(self, registerVariables = {"OnOff":locowattConfigHandler.registerVariable()}):
+        data = {}
+        for varName, registerVariable in registerVariables.items():
+            if (registerVariable.type == "int"):
+                data[varName] = ((self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier)
+                #((self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier)
+            elif(registerVariable.type == "long"):
+                #readValue = (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+                data[varName] = (self.inverter.read_long(registerVariable.address, registerVariable.register) )*registerVariable.valueMultiplier
+            elif(registerVariable.type == "char"):
+                #readValue = (self.inverter.read_register(registerVariable.address,0,registerVariable.register))*registerVariable.valueMultiplier
+                intValues = self.inverter.read_registers(registerVariable.address,registerVariable.length,registerVariable.register)
+                bValues = b''
+                for intVal in intValues:
+                    bValues = bValues + intVal.to_bytes(2,"big")
+                data[varName]= bValues.decode()
+        
+        return data
+
+
     def readVariableList(self, registerVariables = [locowattConfigHandler.registerVariable()]):
         data = {}
         for registerVariable in registerVariables:

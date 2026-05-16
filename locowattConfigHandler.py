@@ -1,7 +1,7 @@
 import json
 
 class configHandler:
-    configFileName = "ModProtGrowattV1.39.json"
+    configFileName = "ModProtGrowattV1.39_dict.json"
     defaultRegister = "holdingRegister"
 
     def __init__(self, fileName=configFileName):
@@ -9,20 +9,30 @@ class configHandler:
         with open(self.configFileName) as configFileRef:
             variables = json.load(configFileRef)
         
-        self.registerVariableList = []
-        for varDict in variables:
-            if (len(self.registerVariableList)<1):
-                self.registerVariableList = [registerVariable(varDict)]
-            else:
-                self.registerVariableList.append(registerVariable(varDict))
+        self.registerVariableDict = {}
+        for key, value in variables.items():
+            self.registerVariableDict[key] = registerVariable(value)
+            
+            # if (len(self.registerVariableList)<1):
+            #     self.registerVariableList = [registerVariable(varDict)]
+            # else:
+            #     self.registerVariableList.append(registerVariable(varDict))
+
+
+        # self.registerVariableList = []
+        # for varDict in variables:
+        #     if (len(self.registerVariableList)<1):
+        #         self.registerVariableList = [registerVariable(varDict)]
+        #     else:
+        #         self.registerVariableList.append(registerVariable(varDict))
 
 class registerVariable:
-    defaultRegisterDict = {"register":3,"name":"OnOff","address":0,"length":1,"type":"int","maxVal":3,"minVal":0,"bWriteable":True, "valueMultiplier":1,"unit":""}
+    defaultRegisterDict = {"register":3,"address":0,"length":1,"type":"int","maxVal":3,"minVal":0,"bWriteable":True, "valueMultiplier":1,"unit":""}
     
 
     def __init__(self, registerDict=defaultRegisterDict):
         self.register = registerDict["register"]
-        self.name = registerDict["name"]
+        #self.name = registerDict["name"]
         self.address = registerDict["address"]
         self.length = registerDict["length"]
         self.type = registerDict["type"]
