@@ -31,5 +31,5 @@
     "BDC9 BatSOC": {"register":4,"address":5401 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true},
     "BDC10 BatSOC": {"register":4,"address":5441 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true},
     "BDC11 BatSOC": {"register":4,"address":5481 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true},
-    "BDC12 BatSOC": {"register":4,"address":5521 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true},
+    "BDC12 BatSOC": {"register":4,"address":5521 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true}
 }
