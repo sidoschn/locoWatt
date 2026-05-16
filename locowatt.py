@@ -18,17 +18,17 @@ configHandler = locowattConfigHandler.configHandler()
 #holdingRegisterVariables = configHandler.getRegisterVariables()
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 starttime = time.time()
-for i in range(5):
+#for i in range(5):
 
 
-    data = modbusInterface.readVariableDict(configHandler.registerVariableDict)
+data = modbusInterface.readVariableDict(configHandler.registerVariableDict)
 
-    print (data)
+print (data)
 
-    payload = mqtt.compilePyload(data)
+payload = mqtt.compilePyload(data)
 
-    mqtt.publishPayload(payload, payload["device"])
-    #time.sleep(1)
+mqtt.publishPayload(payload, payload["device"])
+#time.sleep(1)
 
 endtime = time.time()
 print(endtime-starttime)
