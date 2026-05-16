@@ -2,7 +2,7 @@
     "OnOff": {"register":3,"address":0,"length":1,"type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
     "INV Type": {"register":3,"address":125,"length":7,"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
     "Serial NO": {"register":3,"address":209 ,"length":5,"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
-    "BDC1 Serial NO": {"register":3,"address":8560 ,"length":5,"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
+    "BDC1 Serial NO": {"register":3,"address":5400 ,"length":5,"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
     "Off-Grid Discharge stop SOC": {"register":3,"address":3037 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "On-Grid Discharge stop SOC": {"register":3,"address":3067 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "InverterStatus": {"register":4,"address":0,"length":1, "type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
