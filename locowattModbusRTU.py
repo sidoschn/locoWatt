@@ -89,7 +89,7 @@ class modbusRTUInterface:
                 data[varName]= bValues.decode()
             elif(registerVariable.type == "byte"):
                 
-                intValues = self.inverter.read_registers(registerVariable.address,registerVariable.length,registerVariable.register)
+                intValues = self.inverter.read_register(registerVariable.address,0,registerVariable.register)
                 print(intValues)
                 binValues = bin(intValues)
                 print(binValues)
