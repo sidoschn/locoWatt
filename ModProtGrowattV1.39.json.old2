@@ -1,0 +1,11 @@
+[
+    {"register":3,"name":"OnOff","address":0,"length":1,"type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
+    {"register":3,"name":"Serial NO","address":209 ,"length":5,"type":"char","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
+    {"register":3,"name":"Off-Grid Discharge stop SOC","address":3037 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
+    {"register":3,"name":"On-Grid Discharge stop SOC","address":3067 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
+    {"register":4,"name":"InverterStatus","address":0,"length":1, "type":"int","maxVal":3,"minVal":0,"bWriteable":true, "valueMultiplier":1,"unit":"", "bMakeSensor":true},
+    {"register":4,"name":"SoC","address":3215 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
+    {"register":4,"name":"Ppv","address":1 ,"length":2,"type":"long","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
+    {"register":4,"name":"Pac","address":35 ,"length":2,"type":"long","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true}
+        
+]

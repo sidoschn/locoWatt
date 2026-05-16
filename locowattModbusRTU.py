@@ -89,7 +89,7 @@ class modbusRTUInterface:
         
         return data
 
-
+    #this is a legacy method 
     def readVariableList(self, registerVariables = [locowattConfigHandler.registerVariable()]):
         data = {}
         for registerVariable in registerVariables:

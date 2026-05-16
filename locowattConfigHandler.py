@@ -1,7 +1,7 @@
 import json
 
 class configHandler:
-    configFileName = "ModProtGrowattV1.39_dict.json"
+    configFileName = "ModProtGrowattV1.39.json"
     defaultRegister = "holdingRegister"
 
     def __init__(self, fileName=configFileName):

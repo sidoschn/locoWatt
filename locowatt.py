@@ -28,7 +28,7 @@ for i in range(5):
     payload = mqtt.compilePyload(data)
 
     mqtt.publishPayload(payload, payload["device"])
-    time.sleep(1)
+    #time.sleep(1)
 
 # searchFor = 'Ppv'
 # searchResult = None
