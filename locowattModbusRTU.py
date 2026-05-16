@@ -71,6 +71,7 @@ class modbusRTUInterface:
 
 
     def readVariableDict(self, registerVariables = {"OnOff":locowattConfigHandler.registerVariable()}):
+        self.inverter.close_port_after_each_call = False
         data = {}
         for varName, registerVariable in registerVariables.items():
             if (registerVariable.type == "int"):
@@ -86,7 +87,8 @@ class modbusRTUInterface:
                 for intVal in intValues:
                     bValues = bValues + intVal.to_bytes(2,"big")
                 data[varName]= bValues.decode()
-        
+        self.inverter.close_port_after_each_call = True
+        self.inverter.serial.close()
         return data
 
     #this is a legacy method 
