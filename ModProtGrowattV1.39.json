@@ -20,5 +20,6 @@
     "SoC": {"register":4,"address":3215 ,"length":1,"type":"int","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "PpV": {"register":4,"address":1 ,"length":2,"type":"long","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
     "Pac": {"register":4,"address":35 ,"length":2,"type":"long","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
-    "BDC1 BatRealSOC": {"register":4,"address":5081 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true}  
+    "BDC1 BatSOC": {"register":4,"address":5081 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true},
+    "BDC2 BatSOC": {"register":4,"address":5121 ,"length":1,"type":"byte","maxVal":255,"minVal":0,"bWriteable":false, "valueMultiplier":0.01,"unit":"%", "bMakeSensor":true}  
 }
