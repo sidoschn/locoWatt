@@ -89,13 +89,17 @@ class modbusRTUInterface:
                 data[varName]= bValues.decode()
             elif(registerVariable.type == "byte"):
                 
+                bytePos = registerVariable.length
                 intValues = self.inverter.read_register(registerVariable.address,0,registerVariable.register)
                 
                 binValues = bin(intValues)
                 
                 # for intVal in intValues:
                 #     bValues = bValues + intVal.to_bytes(2,"big")
-                data[varName]= int(binValues[-8:],2) # convert the last byte of the binary string to int
+                if (bytePos == 1):
+                    data[varName]= int(binValues[:8],2)*registerVariable.valueMultiplier # convert the first byte of the binary string to int and multiply by multiplier
+                elif(bytePos == 2):
+                    data[varName]= int(binValues[-8:],2)*registerVariable.valueMultiplier # convert the last byte of the binary string to int and multiply by multiplier
         self.inverter.close_port_after_each_call = True
         self.inverter.serial.close()
         return data
