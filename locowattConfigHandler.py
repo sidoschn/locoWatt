@@ -36,8 +36,6 @@ class registerVariable:
         self.address = registerDict["address"]
         self.length = registerDict["length"]
         self.type = registerDict["type"]
-        self.maxVal = registerDict["maxVal"]
-        self.minVal = registerDict["minVal"]
         self.bWriteable = registerDict["bWriteable"]
         self.valueMultiplier = registerDict["valueMultiplier"]
         self.unit = registerDict["unit"]
