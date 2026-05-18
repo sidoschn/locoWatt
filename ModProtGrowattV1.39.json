@@ -131,6 +131,10 @@
     "Sac": {"register":4,"address":230 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
     "ReActPower": {"register":4,"address":232 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
 
+    "PactouserTotal": {"register":4,"address":1021 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
+    "Pactogrid total": {"register":4,"address":1029 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
+    "PLocalLoad total": {"register":4,"address":1037 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
+
     "SoC": {"register":4,"address":3215 ,"length":1,"type":"int", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "BDC1 BatSOC": {"register":4,"address":5081 ,"length":2,"type":"byte", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "BDC2 BatSOC": {"register":4,"address":5121 ,"length":2,"type":"byte", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},  
