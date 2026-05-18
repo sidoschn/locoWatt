@@ -133,6 +133,8 @@
 
     "Pdischarge1": {"register":4,"address":1009 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
     "Pcharge1": {"register":4,"address":1011 ,"length":2,"type":"long", "bWriteable":false, "valueMultiplier":0.1,"unit":" W", "bMakeSensor":true},
+    "Vbat": {"register": 4, "address": 1013, "length": 1, "type": "int", "bWriteable": false, "valueMultiplier": 0.1, "unit": " V", "bMakeSensor": true},
+    "SOC": {"register": 4, "address": 1014, "length": 1, "type": "int", "bWriteable": false, "valueMultiplier": 0.1, "unit": "%", "bMakeSensor": true},
 
     "SoC": {"register":4,"address":3215 ,"length":1,"type":"int", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "BDC1 BatSOC": {"register":4,"address":5081 ,"length":2,"type":"byte", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
