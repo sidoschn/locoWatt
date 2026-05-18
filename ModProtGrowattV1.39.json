@@ -127,6 +127,8 @@
     "Curr_Sting15": {"register": 4, "address": 171, "length": 1, "type": "int", "bWriteable": false, "valueMultiplier": 0.1, "unit": " A", "bMakeSensor": true}, 
     "V_String16": {"register": 4, "address": 172, "length": 1, "type": "int", "bWriteable": false, "valueMultiplier": 0.1, "unit": " V", "bMakeSensor": true}, 
     "Curr_Sting16": {"register": 4, "address": 173, "length": 1, "type": "int", "bWriteable": false, "valueMultiplier": 0.1, "unit": " A", "bMakeSensor": true},
+    "StrDisconnect": {"register": 4, "address": 176, "length": 1, "type": "bin", "bWriteable": false, "valueMultiplier": 1, "unit": "", "bMakeSensor": true},
+    
 
     "SoC": {"register":4,"address":3215 ,"length":1,"type":"int", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},
     "BDC1 BatSOC": {"register":4,"address":5081 ,"length":2,"type":"byte", "bWriteable":false, "valueMultiplier":1,"unit":"%", "bMakeSensor":true},

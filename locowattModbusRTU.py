@@ -100,6 +100,11 @@ class modbusRTUInterface:
                     data[varName]= int(binValues[:8],2)*registerVariable.valueMultiplier # convert the first byte of the binary string to int and multiply by multiplier
                 elif(bytePos == 2):
                     data[varName]= int(binValues[-8:],2)*registerVariable.valueMultiplier # convert the last byte of the binary string to int and multiply by multiplier
+            elif(registerVariable.type == "bin"):
+                intValues = self.inverter.read_register(registerVariable.address,0,registerVariable.register)
+                binValues = bin(intValues)
+                data[varName] = binValues
+
         self.inverter.close_port_after_each_call = True
         self.inverter.serial.close()
         return data
