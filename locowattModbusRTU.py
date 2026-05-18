@@ -70,7 +70,7 @@ class modbusRTUInterface:
             return bValues.decode()
 
 
-    def readVariableDict(self, registerVariables = {"OnOff":locowattConfigHandler.registerVariable()}):
+    def readVariableDict(self, registerVariables = {"OnOff":locowattConfigHandler.registerVariable()}): #todo: implement a check/interrupt for NA controller signals in this loop
         self.inverter.close_port_after_each_call = False
         data = {}
         for varName, registerVariable in registerVariables.items():

@@ -21,7 +21,7 @@ starttime = time.time()
 #for i in range(5):
 
 
-data = modbusInterface.readVariableDict(configHandler.registerVariableDict)
+data = modbusInterface.readVariableDict(configHandler.registerVariableDict) #! there should be a check and the possibility for interrupt by NA controller signal implemented here
 
 print (data)
 
