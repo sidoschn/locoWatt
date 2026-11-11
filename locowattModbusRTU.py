@@ -4,7 +4,7 @@ import locowattConfigHandler
 
 class modbusRTUInterface:
     inverter = None
-    stateDictionary = {0:"Inverter Off", 1:"Inverter On", 2:"Battery On", 3:"Battery Off"}
+    stateDictionary = {0:"Inverter Off", 1:"Inverter On", 2:"Battery Off", 3:"Battery On"}
     
     # can be re-written in init
     device = '/dev/ttyUSB0'

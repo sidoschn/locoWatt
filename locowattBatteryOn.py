@@ -9,4 +9,4 @@ autoUpdate.performAutoupdate()
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 modbusInterface.switchSystemState(3)
 
-print("battery switched off")
+print("battery switched On")
