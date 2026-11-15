@@ -157,6 +157,10 @@ class modbusRTUInterface:
         print("switched State to "+ self.stateDictionary[newSystemState] + "(took "+str(deltaTime)+"seconds)")
         
     
+    def writeSingleVariable(self,targetRegister,newValue, nDecimals = 0):
+
+        self.inverter.write_register(targetRegister,newValue,nDecimals)
+
     
     def switchSystemState(self, newSystemState):
         
