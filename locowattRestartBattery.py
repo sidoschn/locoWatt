@@ -6,6 +6,8 @@ import time
 
 autoUpdate.performAutoupdate()
 
+
+
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 #modbusInterface.switchSystemState(1)
 modbusInterface.switchSystemState(1)
