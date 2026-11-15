@@ -12,7 +12,7 @@ autoUpdate.performAutoupdate()
 systemStateRegister = 0 #holding register
 onGridStateRegister = 3282 #input register
 bmsSocRegister = 3215 # input register
-dischargeLimitRegister = 952 #holding register, double check that
+dischargeLimitRegister = 3067 #holding register
 
 
 
