@@ -13,13 +13,9 @@ systemStateRegister = 0 #holding register
 onGridStateRegister = 3282 #input register
 bmsSocRegister = 3215 # input register
 dischargeLimitRegister = 3067 #holding register
-
-
-
-
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 
-sleepTimeStart = 19
+sleepTimeStart = 16
 sleepTimeEnd = 5
 
 #run a permanent loop
@@ -65,7 +61,7 @@ while bRunning:
     #check the time
     timeOfDay = datetime.now()
     print("current hour: " +str(timeOfDay.hour))
-    if timeOfDay.hour < sleepTimeEnd or timeOfDay.hour > sleepTimeStart:
+    if timeOfDay.hour <= sleepTimeEnd or timeOfDay.hour >= sleepTimeStart:
         # check if we are running off-grid
         #self.inverter.read_register(3282,0,4) # 0 is off-grid, 1 is on-grid, 2 is generator mode
         gridState = modbusInterface.readSingleInputRegister(onGridStateRegister)
