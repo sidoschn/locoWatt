@@ -1,7 +1,7 @@
 import locowattModbusRTU
 import autoUpdate
 import time
-import datetime
+from datetime import datetime
 
 #this script is supposed to be run as a service, it will track time of day and SOC 
 #it will force the Battery to sleep at night if it is empty
