@@ -19,7 +19,7 @@ dischargeLimitRegister = 952 #holding register, double check that
 
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 
-sleepTimeStart = 20
+sleepTimeStart = 15
 sleepTimeEnd = 6
 
 #run a permanent loop
