@@ -59,6 +59,10 @@ def putBatteryToSleep():
     print("Battery Off procedure complete")
 
 
+def wakeBatteryUp():
+    print("waking battery up...")
+
+
 
 while bRunning:
 
