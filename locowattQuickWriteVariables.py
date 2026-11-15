@@ -9,7 +9,7 @@ autoUpdate.performAutoupdate()
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 #modbusInterface.switchSystemState(1)
 #modbusInterface.switchSystemState(1)
-targetRegister = 18
+targetRegister = 19
 newVal = 10
 print("writing start time to :"+str(newVal))
 print("old value:")
