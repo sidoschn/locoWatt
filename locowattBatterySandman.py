@@ -58,14 +58,10 @@ def putBatteryToSleep():
     
     print("Battery Off procedure complete")
 
-
 def wakeBatteryUp():
     print("waking battery up...")
 
-
-
 while bRunning:
-
     #check the time
     timeOfDay = datetime.now()
     print("current hour: " +str(timeOfDay.hour))
