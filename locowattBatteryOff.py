@@ -18,21 +18,29 @@ print("switching Battery Off...")
 # this command is intentionally blocking to inhibit conflicting communication
 
 print("confirming battery deactivation state...")
-for i in range(20):
-    currentSystemState = modbusInterface.readSingleHoldingRegister(0)
-    print(currentSystemState)
+for i in range(30):
+    try:
+        currentSystemState = modbusInterface.readSingleHoldingRegister(0)
     
+    except:
+        print("no connection to system")
+        currentSystemState = -1
+    
+    print(currentSystemState)    
     match currentSystemState: #todo: add correction actions in case undesired state switches are detected
         case 0:
             print("system went to standy")
         case 1:
             print("system went to on")
+            print("re-sending battery Off command")
+            modbusInterface.switchSystemState(2)
         case 2:
             print("battery stayed off (desired state)")
         case 3:
             print("battery turned back on")
         case _:
-            print("unknown System state")
+            print("unknown System state (system probably unpowered)")
+    
     time.sleep(1)
 
 
