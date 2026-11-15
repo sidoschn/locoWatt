@@ -6,7 +6,9 @@ autoUpdate.performAutoupdate()
 
 modbusInterface = locowattModbusRTU.modbusRTUInterface()
 #modbusInterface.switchSystemState(0)
-modbusInterface.switchSystemState(2) #this might need repeating in case of "no sun" because inverter looses power and forgets the state
+
+#modbusInterface.switchSystemState(2) #this might need repeating in case of "no sun" because inverter looses power and forgets the state
+
 # empirically confirmed: when "no sun" (no power from solar collectors), the inverter loses Power when the battery switches off
 # this results in the inverter losing the "battery off state" and immediately sending a wake up signal to the battery
 print("switching Battery Off...")
