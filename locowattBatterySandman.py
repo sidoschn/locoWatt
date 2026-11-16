@@ -72,18 +72,24 @@ while bRunning:
             bOnGrid = False
 
         if bOnGrid:
-            # get SOC of BMS1
-            socOfBms = modbusInterface.readSingleInputRegister(bmsSocRegister)
-            print("Current SOC: "+ str(socOfBms))
-            # get discharge limit
-            minSoc = modbusInterface.readSingleHoldingRegister(dischargeLimitRegister)
-            print("Minimum allowable SOC: "+str(minSoc))
+            # get system state
+            currentSystemState = modbusInterface.readSingleHoldingRegister(systemStateRegister)
+            if currentSystemState != 2: # only act if system is not already in battery sleep state
+                # get SOC of BMS1
+                socOfBms = modbusInterface.readSingleInputRegister(bmsSocRegister)
+                print("Current SOC: "+ str(socOfBms))
+                # get discharge limit
+                minSoc = modbusInterface.readSingleHoldingRegister(dischargeLimitRegister)
+                print("Minimum allowable SOC: "+str(minSoc))
 
-            if socOfBms <= minSoc:
-                print ("Putting Battery to sleep...")
-                putBatteryToSleep()
+                if socOfBms <= minSoc:
+                    print ("Putting Battery to sleep...")
+                    putBatteryToSleep()
+                else:
+                    print ("no action required")
             else:
-                print ("no action required")
+                print("battery is fast asleep :-)")
+            
                             
     time.sleep(10)
 
