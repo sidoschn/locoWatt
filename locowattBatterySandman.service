@@ -11,9 +11,9 @@ Type=simple
 User=admin
 
 WorkingDirectory=/home/admin/locoWatt
-ExecStart=-/usr/bin/python3 -u /home/admin/locoWatt/LocowattBatterySandman.py
+ExecStart=-/usr/bin/python3 -u /home/admin/locoWatt/locowattBatterySandman.py
 #StandardInput=socket
-#StandardOutput=journal
+StandardOutput=journal
 
 Restart=always
 RestartSec=1
