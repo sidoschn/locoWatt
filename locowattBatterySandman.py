@@ -91,6 +91,6 @@ while bRunning:
                 print("battery is fast asleep :-)")
             
                             
-    time.sleep(60)
+    time.sleep(600)
 
 
