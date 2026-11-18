@@ -6,7 +6,7 @@ After=network.target
 #Wants=mosquitto.service
 
 [Service]
-SyslogIdentifier=grottserver
+SyslogIdentifier=locowattBatterySandman
 Type=simple
 User=admin
 
